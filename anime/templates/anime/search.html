@@ -1,0 +1,7 @@
+{% if results %}	
+	{% for result in results %}
+		{{ result.anime_title }}
+	{% endfor %}
+{% else %}
+	{{ 'No results' }}
+{% endif %}		

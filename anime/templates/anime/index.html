@@ -1,0 +1,15 @@
+{% extends 'anime/base.html' %}
+
+{% block content %}
+</br>
+{% if anime %}
+	<ul>
+	{% for anime in anime %}
+		<li><a href="{{ anime.get_absolute_url }}">
+		{{ anime.anime_title }}</a></li>
+	{% endfor %}</ul>
+{% else %}
+	<p>No anime!!</p>
+{% endif %}
+
+{% endblock %}			

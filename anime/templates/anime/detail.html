@@ -1,0 +1,11 @@
+<li>
+	{{ anime.anime_title }}
+	{{ anime.anime_type }}
+	{{ anime.anime_status }}
+	{{ anime.anime_episodes }}
+</li><br>
+<ul>
+{% for episode in anime.episode_set.all %}
+	<li><a href="{{ episode.get_absolute_url }}">
+		{{ episode.episode_title }}</a></li>
+	{% endfor %}</ul>
