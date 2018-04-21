@@ -120,7 +120,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#Local Storage of images
-MEDIA_ROOT = '/home/madao/development/mywebsite/media/'
 
-MEDIA_URL = '/media/'
+
+#Local Storage of images
+MEDIA_ROOT = '/home/madao/Development/mywebsite/media/'
+
+MEDIA_URL = 'http://localhost:8080/media/'

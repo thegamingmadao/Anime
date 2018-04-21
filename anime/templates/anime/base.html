@@ -1,10 +1,182 @@
-{% block content %}
-{% endblock content %}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+   	<meta charset="utf-8">
+   	<title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% load staticfiles %}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Akronim" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{% static 'anime/style.css' %}" />
+    <!-- Optional JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
+    </script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js">
+    </script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" 
+    integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" 
+    crossorigin="anonymous"></script>    
+</head>
+<body>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/el_GR/sdk.js#xfbml=1&version=v2.12';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+	<nav class="navbar navbar-inverse">
+    	<div class="container-fluid">
+
+        <!-- Header -->
+        <div class="navbar-header">
+        	<button type="button" class="navbar-toggle" data-toggle="collapse" 
+        	data-target="#topNavBar">
+        		<span class="icon-bar"></span>
+        		<span class="icon-bar"></span>
+        		<span class="icon-bar"></span>	
+        	</button>
+            <a class="navbar-brand" href="{% url 'anime:index' %}">
+            SakuraStream</a>
+        </div>
+
+        <!-- Menu Items -->
+        <div class="collapse navbar-collapse" id="topNavBar">
+            
+            <ul class="nav navbar-nav">
+                <li class="{% block anime_list %}{% endblock %}">
+                	<a href="{% url 'anime:tv_listings' %}">
+                		<span class="glyphicon glyphicon-option-vertical" 
+                		aria-hidden="true"></span>&nbsp;Anime List
+                	</a>
+                </li>
+                <li class="{% block ongoing_list %}{% endblock %}">
+                	<a href="{% url 'anime:ongoing_listings' %}">
+                		<span class="glyphicon glyphicon-option-vertical" 
+                		aria-hidden="true"></span>&nbsp;Ongoing Anime
+                	</a>
+                </li>
+                <li class="{% block movies_list %}{% endblock %}">
+                	<a href="{% url 'anime:movies_listings' %}">
+                		<span class="glyphicon glyphicon-option-vertical" 
+                		aria-hidden="true"></span>&nbsp;Anime Movies
+                	</a>
+                </li>
+                <li class="{% block general_discussion %}{% endblock %}">
+                	<a href="{% url 'anime:discussion' %}">
+                		<span class="glyphicon glyphicon-option-vertical" 
+                		aria-hidden="true"></span>&nbsp;General Discussion
+                	</a>
+                </li>
+                <li class="{% block contact_form %}{% endblock %}">
+                	<a href="{% url 'anime:contact' %}">
+                		<span class="glyphicon glyphicon-envelope" 
+                		aria-hidden="true"></span>&nbsp;Contact
+                	</a>
+                </li>
+            </ul>
+
+            <!-- Search Form -->
+            <form class="navbar-form navbar-right" role="search" method="GET" 
+            action="{% url 'anime:search' %}">
+            	<div class="input-group">
+					<input type="text" class="form-control" name="q" 
+					value="{{ request.GET.q }}" placeholder="Search Anime">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Go!</button>
+                    </span>
+                </div>
+            </form>        
+        </div>
+    	</div>
+	</nav>
+{% block body %}
+{% endblock %}    	
+    	<!-- Bottom Bar -->
+    	<div class="container">       
+            <div class="row">
+                <!-- <div class="col-md-1"></div> -->
+                <div class="col-md-12">
+                    <ul class="list-inline">
+                        <li>
+                            <a class="inline-links" 
+                            href="{% url 'anime:index' %}">&nbsp;
+                            Watch Anime Online
+                            </a>
+                        </li>
+                        <li>
+                            <a class="inline-links" 
+                            href="{% url 'anime:tv_listings' %}">&nbsp;
+                            Anime List
+                            </a>
+                        </li>
+                        <li>
+                            <a class="inline-links" 
+                            href="{% url 'anime:ongoing_listings' %}">&nbsp;
+                            Ongoing Anime
+                            </a>
+                        </li>
+                        <li>
+                            <a class="inline-links" 
+                            href="{% url 'anime:movies_listings' %}">&nbsp;
+                            Anime Movies
+                            </a>    
+                        </li>
+                        <li>
+                            <a class="inline-links" 
+                            href="{% url 'anime:tv_listings' %}">&nbsp;
+                            Legal Disclaimer
+                            </a>    
+                        </li>
+                        <li>
+                            <a class="inline-links" 
+                            href="{% url 'anime:tv_listings' %}">&nbsp;
+                            Terms of Use
+                            </a>    
+                        </li>
+                        <li>
+                            <a class="inline-links" 
+                            href="{% url 'anime:contact' %}">
+                                <span class="glyphicon glyphicon-envelope" 
+                                aria-hidden="true">   
+                                </span>&nbsp;Contact
+                            </a>    
+                        </li>                    
+                    </ul>       
+                </div>
+            </div>
+    	</div>
+    	
+    	<!-- Facebook Twitter -->	
+    	<div class="container" style="font-size:3em;">
+    		<div class="row">
+                <div class="col-md-5"></div>
+                <div class="col-md-3">
+                    <ul class="list-inline">
+                        <li>
+                            <a class="text-muted" href="https://www.facebook.com/">
+                                <i class="fab fa-facebook-square"></i>&nbsp;
+                            </a>
+                        </li>
+                        <li>
+                            <a class ="text-muted" href="https://www.twitter.com/">
+                                <i class="fab fa-twitter-square"></i>&nbsp;
+                            </a> 
+                        </li>
+                    </ul>    
+                <div class="col-md-4"></div>      
+            </div>		
+    	</div>
+</body>
+</html>
 
 
 
 
-<form method="GET" action="{% url 'anime:search' %}">
-	<input name="q" value={{ request.GET.q }}>
-	<button class="btn btn-success" type="submit">Search</button>
-</form>     
+
+
+     

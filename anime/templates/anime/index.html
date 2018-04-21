@@ -1,15 +1,128 @@
 {% extends 'anime/base.html' %}
+{% block title %}SakuraStream{% endblock %}
 
-{% block content %}
-</br>
-{% if anime %}
-	<ul>
-	{% for anime in anime %}
-		<li><a href="{{ anime.get_absolute_url }}">
-		{{ anime.anime_title }}</a></li>
-	{% endfor %}</ul>
-{% else %}
-	<p>No anime!!</p>
-{% endif %}
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<h3><strong style="color:black;">Recent Episodes</strong></h3>
+			</div>
+			<div class="col-md-9">
+				<div class="pagination" style="float: left;">
+    				<span class="step-links" style="color: black;">
+        				{% if episodes.has_previous %}
+            				<a href="?page={{ episodes.previous_page_number }}">
+            					<strong style="color: black;">Previous</strong></a>	
+        				{% endif %}
+        			<span class="current"><strong>
+            			Page {{ episodes.number }} of {{ episodes.paginator.num_pages }}
+            		</strong>
+        			</span>
+        			{% if episodes.has_next %}
+            			<a href="?page={{ episodes.next_page_number }}">
+            				<strong style="color: black;">Next</strong></a>
+        			{% endif %}
+    				</span>
+				</div>
+			</div>		
+		</div>
+		<div class="row">
+			<hr style="border-top: 3px double #8c8b8b;">
+			<div class="col-md-12">	
+				{% for episode in episodes %}
+					<a href="{{ episode.get_absolute_url }}">
+						<img src="{{ episode.anime.anime_cover.url }}" class="img-thumbnail img-rounded" 
+						style="height: 250px;width: 220px;margin-bottom: 15px;margin-left: 4px; background-color: black;">
+					</a>
+				{% endfor %}	
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="panel panel-custom">
+  					<div class="panel-heading"><strong>Random Anime</strong></div>
+  					<div class="panel-body">
+  						<div class="row">
+  							<div class="col-md-3">
+  								<a href="{{ random_anime.get_absolute_url }}">
+									<img src="{{ random_anime.anime_cover.url }}" class="img-thumbnail img-rounded" 
+									style="height: 150px;width: 125px;background-color: black;">
+								</a>
+  							</div>
+							<div class="col-md-9">
+								<strong style="color:black">{{ random_anime.anime_title }}</strong><br>
+								Episodes: {{ random_anime.anime_episodes}} - Genres: {{ random_anime.get_genres }}			
+							</div>
+  						</div>			
+  					</div>
+  				</div>	
+			</div>
+			<div class="col-md-6">
+				<div class="panel panel-custom">
+  					<div class="panel-heading"><strong>Random Movie</strong></div>
+  					<div class="panel-body">
+  						<div class="row">
+  							<div class="col-md-3">
+  								<a href="{{ random_movie.get_absolute_url }}">
+									<img src="{{ random_movie.movie_cover.url }}" class="img-thumbnail img-rounded" 
+									style="height: 150px;width: 125px;background-color: black;">
+								</a>
+  							</div>
+							<div class="col-md-9">
+								<strong style="color:black">{{ random_movie.movie_title }}</strong><br>
+								Genres: {{ random_movie.get_genres }}
+							</div>
+  						</div>			
+  					</div>
+  				</div>					
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="panel panel-custom">
+  					<div class="panel-heading"><strong>New Anime</strong></div>
+  					<div class="panel-body" style="max-height: 600px;overflow-y: scroll;">
+  						{% for each in latest %}
+  						<div class="row">
+  							<div class="col-md-5">
+  								<a href="{{ each.get_absolute_url }}">
+									<img src="{{ each.anime_cover.url }}" class="img-thumbnail img-rounded" 
+									style="height: 150px;width: 125px;background-color: black;">
+								</a>
+  							</div>
+							<div class="col-md-7">
+								<strong style="color:black">{{ each.anime_title }}</strong><br>
+								Episodes: {{ each.anime_episodes}} <br> Genres: {{ each.get_genres }}			
+							</div>
+  						</div>
+  						{% endfor %}					
+  					</div>
+  				</div>		
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-custom">
+  					<div class="panel-heading"><strong>Trending</strong></div>
+  					<div class="panel-body" style="max-height: 600px;overflow-y: scroll;">
+  						{% for each in trending %}
+  						<div class="row">
+  							<div class="col-md-5">
+  								<a href="{{ each.get_absolute_url }}">
+									<img src="{{ each.anime_cover.url }}" class="img-thumbnail img-rounded" 
+									style="height: 150px;width: 125px;background-color: black;">
+								</a>
+  							</div>
+							<div class="col-md-7">
+								<strong style="color:black">{{ each.anime_title }}</strong><br>
+								<p class="text-muted">{{ each.anime_count}} Views</p>
+								Episodes: {{ each.anime_episodes}}<br>Genres: {{ each.get_genres }}				
+							</div>
+  						</div>
+  						{% endfor %}					
+  					</div>
+  				</div>		
+			</div>
+		</div>
+	</div><br><br>	
+{% endblock %}
+	
 
-{% endblock %}			

@@ -1,7 +1,55 @@
-{% if results %}	
-	{% for result in results %}
-		{{ result.anime_title }}
-	{% endfor %}
-{% else %}
-	{{ 'No results' }}
-{% endif %}		
+{% extends 'anime/base.html' %}
+{% block title %}You searched for "{{ q }}"{% endblock %}
+
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-8">
+			<h3><strong><span class="glyphicon glyphicon-search" 
+                		aria-hidden="true"></span>&nbsp;
+                	Search Results for: {{ q }}</strong></h3>
+			<hr style="border-top: 3px double #8c8b8b;">
+			<div class="row">
+			{% if results %}	
+			{% for result in results %}
+				<div class="col-md-3">
+					<a href="{{ result.get_absolute_url }}">
+						{% if result.anime_type %}
+						<img src="{{ result.anime_cover.url }}" class="img-thumbnail" 
+						style="height: 200px;width: 100%;margin-bottom: 15px; background-color: black;">
+						{% elif result.movie_type %}
+						<img src="{{ result.movie_cover.url }}" class="img-thumbnail" 
+						style="height: 200px;width: 100%;margin-bottom: 15px; background-color: black;">
+						{% endif %}
+					</a>
+				</div>
+			{% endfor %}
+			{% else %}
+			<h4>No results found</h4>
+			{% endif %}		
+			</div>
+		</div>
+		<div class="col-md-4"></div>
+	</div>
+	<div class="pagination" style="float: left;">
+    	<span class="step-links" style="color: black;">
+        	{% if results.has_previous %}
+           		<a href="?page=1"><strong style="color: black;">
+           			&laquo; First</strong></a>
+           		<a href="?page={{ results.previous_page_number }}">
+           			<strong style="color: black;">Previous</strong></a>	
+       		{% endif %}
+        	<span class="current"><strong>
+           		Page {{ results.number }} of {{ results.paginator.num_pages }}
+           	</strong>
+       		</span>
+       		{% if anime.has_next %}
+           		<a href="?page={{ results.next_page_number }}">
+           			<strong style="color: black;">Next</strong></a>
+           		<a href="?page={{ results.paginator.num_pages }}">
+           			<strong style="color: black;">Last &raquo;</strong></a>
+        	{% endif %}
+    	</span>
+	</div>
+</div>
+{% endblock %}

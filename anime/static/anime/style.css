@@ -1,0 +1,80 @@
+body {
+	background: white url("images/background.png");}
+
+.navbar {
+	border-radius: 0;
+}
+
+.navbar-brand {
+	position: relative;
+	font-family: 'Akronim', cursive;	
+    left: 15px;  
+}
+
+.navbar-inverse .navbar-brand {
+    color: #ff69b4;
+    width: 200px;
+    font-size: 30px;
+}
+
+.img-responsive {
+  display: block;
+  width: 300px;
+  height: 400px;
+}
+
+.list-inline .inline-links {
+	color: black;
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.panel > .panel-custom {
+	color-border: black;
+	border-radius: 0;
+}
+
+.panel > .panel-heading {
+    background-image: none;
+    background-color: black;
+    color: white;
+}
+
+.panel > .panel-body {
+	color: black;
+  background: #FFDDF4;
+}
+
+.dl-horizontal {
+  width: 100%;
+  margin: 0
+}
+
+.dl-horizontal > dt {
+  float: left;
+  width: 25%;
+  /* adjust the width; make sure the total of both is 100% */
+  padding-top: 20px;
+  padding-left: 40px;
+  margin: 0
+}
+
+.dl-horizontal > dd {
+  float: left;
+  width: 75%;
+  /* adjust the width; make sure the total of both is 100% */
+  padding-top: 20px;
+  padding-left: 30px;
+  margin: 0
+}
+
+.a > .img-thumbnail {
+  max-height: 200px;
+  padding-bottom: 15px;
+
+  border-color: black;
+}
+
+.panel-body > .float-right {
+  text-align: right;
+}

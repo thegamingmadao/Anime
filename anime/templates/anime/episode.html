@@ -1,8 +1,68 @@
+{% extends 'anime/base.html' %}
+{% block title %}{{ anime.anime_title }} {{ episode.episode_title }}{% endblock %}
 
-{{ anime.anime_title }}
-{{ episode.episode_title }}
-
-
-<!--
-<iframe width="854" height="480" src="https://ww1.soul-anime.us/watch/one-piece-episode-831/" frameborder="0" allowfullscreen sandbox="allow-forms allow-scripts"
-></iframe> -->
+{% block body %}
+<div class="container-fluid"  style="background: #303030;">
+	<div class="container">
+		<div class="col-md-8">
+			<h3 style="color: white;"><strong>{{ anime.anime_title }} 
+			{{ episode.episode_title }}</strong></h3>	
+			<div class="embed-responsive embed-responsive-16by9">
+  				<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ohQPySWJToo" allowfullscreen></iframe>
+			</div>
+		</div>
+		<div class="col-md-4"></div>
+	</div>
+	<div class="container">
+		<div class="col-md-1">
+			{% if episodes.has_previous %}
+            	<a href="?page={{ episodes.previous_page_number }}">
+            		<strong style="color: white;">Previous</strong></a>	
+        	{% endif %}
+		</div>
+		<div class="col-md-1">
+			{% if episodes.has_next %}
+            	<a href="?page={{ episodes.next_page_number }}">
+            		<strong style="color: white;">Next</strong></a>
+        	{% endif %}
+		</div>
+		<div class="col-md-10"></div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-8">
+			<div class="fb-comments" data-href="http://127.0.0.1:8000{{ episode.get_absolute_url }}" data-width="100%" data-numposts="10">
+			</div>		
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-custom">
+  				<div class="panel-heading"><strong>Episode List</strong></div>
+  				<div class="panel-body" 
+  				style="max-height: 215px;overflow-y: scroll;">
+  				{% for episode in anime.episode_set.all %}
+  					<a href="{{ episode.get_absolute_url }}">
+  						<strong style="color:black">{{ episode.episode_title }}</strong>
+  					</a><br>
+  				{% endfor %}
+  				</div>
+			</div>				
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-5">
+					<img src="{{ anime.anime_cover.url }}" class="img-responsive img-rounded">
+				</div>
+				<div class="col-md-7">				
+				</div>	
+			</div>
+		</div>
+		<div class="col-md-4">
+			
+		</div>
+	</div>
+</div>
+<br><br>
+{% endblock %}

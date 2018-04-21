@@ -1,0 +1,49 @@
+{% extends 'anime/base.html' %}
+{% block title %}Anime Listings{% endblock %}
+{% block anime_list %}active{% endblock %} 
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<h3><strong><span class="glyphicon glyphicon-folder-open" 
+                		aria-hidden="true"></span>&nbsp;
+                	Anime List</strong></h3>
+			<hr style="border-top: 3px double #8c8b8b;">
+				<div class="row">
+				{% for anime in anime %}
+					<div class="col-md-3">
+						<a href="{{ anime.get_absolute_url }}">
+							<img src="{{ anime.anime_cover.url }}" class="img-thumbnail" 
+							style="height: 200px;width: 100%;margin-bottom: 15px; background-color: black;">
+						</a>
+					</div>
+				{% endfor %}		
+				</div>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+		<div class="pagination" style="float: left;">
+    		<span class="step-links" style="color: black;">
+        		{% if anime.has_previous %}
+            		<a href="?page=1"><strong style="color: black;">
+            			&laquo; First</strong></a>
+            		<a href="?page={{ anime.previous_page_number }}">
+            			<strong style="color: black;">Previous</strong></a>	
+        		{% endif %}
+
+        		<span class="current"><strong>
+            		Page {{ anime.number }} of {{ anime.paginator.num_pages }}
+            	</strong>
+        		</span>
+
+        		{% if anime.has_next %}
+            		<a href="?page={{ anime.next_page_number }}">
+            			<strong style="color: black;">Next</strong></a>
+            		<a href="?page={{ anime.paginator.num_pages }}">
+            			<strong style="color: black;">Last &raquo;</strong></a>
+        		{% endif %}
+    		</span>
+		</div>
+	</div>
+{% endblock %}	

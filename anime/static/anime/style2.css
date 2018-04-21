@@ -1,0 +1,95 @@
+body {
+	background: black;
+	margin: 0;
+}
+
+.peos {
+	background: blue;
+}
+
+.peos2 {
+	background: red;
+}
+
+.peos3 {
+	width: 200px;
+	height: 500px;
+	background: yellow;
+}
+
+@media(min-width: 651px){
+	.common {
+		float: left;
+		width: calc(33% - 20px);
+	}
+}
+
+@media(max-width: 650px){
+	.common {
+		width: 200px;
+		margin: 0 auto;
+	}
+}
+
+@media(min-width: 651px){
+	.wrapper2::before {
+		float: left;
+		width: calc(33% - 20px);
+	}
+}
+
+@media(max-width: 650px){
+	.wrapper2::before {
+		width: 200px;
+		margin: 0 auto;
+	}
+}
+
+.common {
+	height: 200px;
+	transition: background 1s, transform 1s;
+	margin-left: 20px;
+}
+
+@media(min-width: 651px){
+	.wrapper {
+		width: 100%;
+	}
+}
+
+@media(max-width: 650px){
+	.wrapper {
+		width: 92%;
+	}
+}
+
+.wrapper {
+	max-width: 600px;
+	margin: 0 auto;
+	
+	background: green;
+}
+
+.wrapper2::before{
+	background: pink;
+	height: 200px;
+	width: 33%;
+	float: left;
+	content: "";
+}
+
+.wrapper2::after{
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.wrapper:hover .peos{
+	background: red;
+	transform: translateX(100%) rotate(90deg);
+}
+
+.wrapper:hover .peos2{
+	background: blue;
+	transform: translateX(-100%) rotate(-90deg);
+}	

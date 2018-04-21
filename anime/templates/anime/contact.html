@@ -1,0 +1,32 @@
+{% extends 'anime/base.html' %}
+{% block title %}Contact{% endblock %}
+{% block contact_form %}active{% endblock %}
+
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-8">
+			<h3><strong style="color:black;">Contact</strong></h3>
+			<hr style="border-top: 3px double #8c8b8b;">
+			<p>Contact us if you have any request, or you need any information</p>
+			<br>
+			<form action="{% url 'anime:contact' %}" method="POST">
+				{% csrf_token %}	
+				{% for each in form %}
+					<h4>{{ each.label }}(*)</h4>{{ each }}<br><br>
+				{% endfor %}
+				<br><br>
+				<button class="btn btn-default" type="submit"><strong>Send</strong></button>
+				{% if success %}
+				<h4>Thank you for your message!</h4>
+				{% endif %}
+			</form>
+		</div>
+		<div class="col-md-4">
+			
+		</div>
+	</div>
+</div>
+<br><br>
+{% endblock %}
+      
